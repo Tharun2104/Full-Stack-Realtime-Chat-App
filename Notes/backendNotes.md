@@ -46,5 +46,32 @@
 7. install daisyui and update tailwind.config.js
 8. in main.jsx update the BrowserRouter react
 9. add page routers in the app.jsx and create the pages
-10. Install axios and zustand
-11. 
+10. Install axios and zustand( global state management library )
+11. create a axios Instance so that i can use when ever i want ( lib/axios.js/axiosInstance )
+12. create a store folder and useAuthStore.js ( this is a hook, when ever we need we call it and destructure it and use it).
+13. simply we are using axios for communicating frontend with backend
+14. Use destructure useAuthStore.js in App.jsx and use the authUser data in App.jsx to check the user is logged in or not 
+15. When checking we are displaying the loading icon
+16. **CORS** stands for Cross-Origin Resource Sharing. Its a security feature that prevents unauthorized requests from one domain (origin) to another.
+17. frontend on: http://localhost:5173 And your backend API is on: http://localhost:5001
+These are considered two different origins (different ports = different origins), so browsers block requests from one to the other by default unless CORS is enabled.
+
+## Building the signup page
+1. For left hand side build the UI using react, tailwind and daisy
+2. For right hand side use code from AuthImagePattern
+3. Bunch of functions to check the user entered data and to to store the data
+4. validateForm checks the user entered data with some rules, using toast to generate the error or success message popup
+5. captured entered data will pass to the useAuthStore and signup using axiosInstance post method 
+
+## Building logout on Navbar section
+1. same logic in useAuthStore build logout function using axiosInstance
+
+## Building login
+1. pretthy much same as signup page, some UI stuff in login page connect the page to useAuthStore
+
+## updating-profile 
+1. some ui in profile page and also For uploading the image 
+2. once user upload the image grab the image and create a FileReader and convert the image in to base64URL and send the image to the updateProfile and process it
+
+## Settings page
+1. 

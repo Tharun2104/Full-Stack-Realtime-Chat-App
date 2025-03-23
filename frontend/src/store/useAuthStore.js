@@ -1,25 +1,85 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js"
+import toast from "react-hot-toast";
 
- export const useAuthStore = create((set) => ({
-    authUser: null,
+ export const useAuthStore = create((set) => ({ // setter function
+    authUser: null,  // initally null if user is already logged in res.data in line 18
     isSigningUp: false,
-    isLoggingIng: false,
+    isLoggingIn: false,
     isUpdatingProfile: false,
 
     isCheckingAuth: true,
 
+     // when user refresh the page checking verified user or not
     checkAuth: async () => {
         try {
             // Sends a GET request to "/auth/check" using Axios to verify the user’s authentication status.
-            const res = await axiosInstance.get("/auth/check");
+        const res = await axiosInstance.get("/auth/check");
 
-            set({ authUser: res.data });
+        set({ authUser: res.data });
+        // get().connectSocket();
         } catch (error) {
-            console.log("Error in checkAuth:", error);
-            set({ authUser: null });
-        } finally{
-            set({ isCheckingAuth: false });
+        console.log("Error in checkAuth1:", error);
+        set({ authUser: null });
+        } finally {
+        set({ isCheckingAuth: false });
         }
     },
+    
+    // signup login
+    signup: async (data) => {
+        set({ isSigningUp: true });
+        try {
+          const res = await axiosInstance.post("/auth/signup", data);
+          set({ authUser: res.data });
+          toast.success("Account created successfully");
+        //   get().connectSocket();
+        } catch (error) {
+          toast.error(error.response.data.message);
+        } finally {
+          set({ isSigningUp: false });
+        }
+      },
+
+      login: async (data) => {
+        console.log(data)
+        set({ isLoggingIn: true });
+        try {
+          const res = await axiosInstance.post("/auth/login", data);
+          set({ authUser: res.data });
+          toast.success("Logged in successfully");
+          get().connectSocket();
+        } catch (error) {
+          console.log("Login Error:", error);
+          toast.error(error.response.data.message);
+        } finally {
+          set({ isLoggingIn: false });
+        }
+      },
+
+    logout: async () => {
+        try {
+            await axiosInstance.post("/auth/logout");
+            set( {authUser: null });
+            toast.success("Logged out successfully");
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    },
+
+    updateProfile: async (data) => {
+        set({ isUpdatingProfile: true });
+        try {
+          const res = await axiosInstance.put("/auth/update-profile", data);
+          set({ authUser: res.data });
+          toast.success("Profile updated successfully");
+        } catch (error) {
+          console.log("error in update profile:", error);
+          toast.error("Image should be less than 100kb")
+          toast.error(error.response.data.message);
+        } finally {
+          set({ isUpdatingProfile: false });
+        }
+      },
  }));
+ 
