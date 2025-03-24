@@ -1,5 +1,7 @@
 import Message from "../models/message.model.js";
 import User from "../models/user.model.js";
+import cloudinary from "../lib/cloudinary.js"
+import { getReceiverSocketId, io } from "../lib/socket.js";
 
 // fetching all the users to display on left side to chat
 export const getUsersForSidebar = async (req, res) => {
@@ -59,7 +61,12 @@ export const sendMessage = async (req, res) => {
         // save the message to the db
         await newMessage.save();
 
-        // todo: realtime functionality goes here => socket.io
+        // realtime functionality goes here => socket.io
+        const receiverSocketId= getReceiverSocketId(receiverId);
+        if(receiverSocketId)
+        {
+            io.to(receiverSocketId).emit("newMessage", newMessage);  // sending the message to a paticular user
+        }
 
         res.status(201).json(newMessage); // 201 - new message has been created
 

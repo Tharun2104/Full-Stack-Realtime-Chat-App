@@ -25,11 +25,10 @@ const App = () => {    // type rafce it will automatically diaplay the boilerpla
 
   console.log({ authUser });
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
-  
-  
+  // can write this way as well
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", theme);
+  // }, [theme]);
   
 
   // for loading icon
@@ -40,7 +39,7 @@ const App = () => {    // type rafce it will automatically diaplay the boilerpla
   )
 
   return (
-    <div >
+    <div data-theme = { theme}>
       <Navbar />
       <Routes>
         {/* if user is authenticated then navigate to home or else home page */}

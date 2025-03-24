@@ -74,4 +74,61 @@ These are considered two different origins (different ports = different origins)
 2. once user upload the image grab the image and create a FileReader and convert the image in to base64URL and send the image to the updateProfile and process it
 
 ## Settings page
-1. 
+1. added some defalt messages and themes ( Themes from daisyui is working only if we use daisyui 4.12.24)
+2. selected theme should shore in the localstorage handled in the useThemeStore file
+   
+
+How are we writing code in Store folder
+1. Inside a async function, set a value and
+2. create try catch and finally block and in try call the axiosInstance using respective endpoint and get the data
+3. catch if any error accros in the process
+
+
+-> UseEffect should be run without any condition (this is just a side function). When React UI loads the useEffect function will execute.
+
+
+
+
+
+**MessageInput field** : A box for input and a field to upload image and a send button and preview option for an image
+
+
+Handling image uploads:
+1. when user upload a image grab the image using e.target.file[0] (first one)
+2. then check if image is uploaded or not
+3. if image then create a File Reader and preview it if needed
+
+Build the message section using Daisy UI
+sender has className of class-end and reciever has class name of class-start and other bunch of classNames such as class-bubble
+
+
+
+
+Socket IO (Realtime messages sent using socketio)
+1. B/w sender and reciever there will be socketio. which listens for the events or react
+2. for backend socket.io server and for frontend we have socket-client
+
+in BackEnd
+1. create a socket.js file in backend and initialise the app and connect the app with the server
+2. from the server initialize the socket.io server
+3. use this server and app in the index.js
+
+in FrontEnd
+1. when login and signup or refresh use socket.io-client connect with socket.io
+2. use disconnectSocket in logout function
+
+for realtime messages :
+1. we will implement in message.controller, if we recieve a new message we will send to the person
+2. in chatstore append the new messsage to old messages in the subscribeToMessages function
+   
+
+
+
+
+
+
+
+
+
+
+
