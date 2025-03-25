@@ -8,3 +8,10 @@ Highlights:
 - 🚀 Online user status
 - 👌 Global state management with Zustand
 - 🐞 Error handling both on the server and on the client
+
+## Website Overview
+![WebSite Overview](frontend/public/website_overview.png)
+
+[Vconnect.com](https://full-stack-realtime-chat-app-ovyd.onrender.com)
+
+
