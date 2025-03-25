@@ -124,7 +124,8 @@ for realtime messages :
 
 
 
-
+openssl rand -base64 32  
+to create a secret key command
 
 
 
