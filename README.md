@@ -1,5 +1,7 @@
 # End-to-End Full-Stack-Realtime-Chat-App
 
+Live Demo: [Vconnect.com](https://full-stack-realtime-chat-app-ovyd.onrender.com)
+
 **Highlights:**
 
 - 🌟 Tech stack: MERN + Socket.io + TailwindCSS + Daisy UI
@@ -12,6 +14,6 @@
 ## Website Overview
 ![WebSite Overview](frontend/public/website_overview.png)
 
-[Vconnect.com](https://full-stack-realtime-chat-app-ovyd.onrender.com)
+
 
 
